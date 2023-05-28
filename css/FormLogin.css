@@ -1,0 +1,152 @@
+.form {
+  border: 1px solid rgba(153, 153, 153, 0.6);
+  border-radius: 15px;
+  width: 500px;
+  height: 600px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+}
+.form .box-background {
+  margin-bottom: 10px;
+  background-color: #aee2ff;
+  border-radius: 15px 15px 0 0;
+  width: 100%;
+  height: 40%;
+}
+.form .form-header-text {
+  padding: 15px;
+  text-align: center;
+  text-transform: uppercase;
+  color: #999;
+  font-weight: 300;
+  letter-spacing: 4px;
+}
+.form .form-box-error-message {
+  padding: 8px;
+}
+.form .form-box-error-message .form-error-message {
+  color: #ffadbc;
+  letter-spacing: 1px;
+  font-weight: 300;
+}
+.form .form-box-input {
+  padding: 10px;
+  width: 55%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  color: #fff;
+}
+.form .form-box-input .form-box-input-icon {
+  background-color: #aee2ff;
+  padding: 8px;
+  height: 40px;
+  border-radius: 6px 0 0 6px;
+}
+.form .form-box-input .form-box-input-icon .form-input-icon {
+  color: #fff;
+}
+.form .form-box-input .input {
+  height: 40px;
+  width: 100%;
+  padding: 10px 5px;
+  background-color: #aee2ff;
+  outline: none;
+  border: none;
+  border-radius: 0 6px 6px 0;
+  color: #fff;
+}
+.form .form-box-buttons {
+  width: 55%;
+  padding: 10px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  gap: 10px;
+}
+.form .form-box-buttons .form-button {
+  border: none;
+  border-radius: 4px;
+  padding: 8px 30px;
+  font-size: 12px;
+  font-weight: 500;
+  text-transform: uppercase;
+  background-color: #b799ff;
+  color: #fff;
+  cursor: pointer;
+  -webkit-transition: opacity 0.3s;
+  transition: opacity 0.3s;
+}
+.form .form-box-buttons .form-button:hover {
+  opacity: 0.7;
+}
+.form .form-box-buttons .form-text {
+  font-weight: 300;
+  letter-spacing: 2px;
+  font-size: 13px;
+  color: #acbcff;
+}
+.form .form-box-buttons .form-button-login {
+  font-weight: 300;
+  letter-spacing: 2px;
+  -webkit-transition: opacity 0.3s;
+  transition: opacity 0.3s;
+  color: #999;
+}
+.form .form-box-buttons .form-button-login:hover {
+  opacity: 0.6;
+}
+.form ::-webkit-input-placeholder {
+  color: #fff;
+  text-transform: uppercase;
+  font-weight: 300;
+  letter-spacing: 1px;
+}
+.form ::-moz-placeholder {
+  color: #fff;
+  text-transform: uppercase;
+  font-weight: 300;
+  letter-spacing: 1px;
+}
+.form :-ms-input-placeholder {
+  color: #fff;
+  text-transform: uppercase;
+  font-weight: 300;
+  letter-spacing: 1px;
+}
+.form ::-ms-input-placeholder {
+  color: #fff;
+  text-transform: uppercase;
+  font-weight: 300;
+  letter-spacing: 1px;
+}
+.form ::placeholder {
+  color: #fff;
+  text-transform: uppercase;
+  font-weight: 300;
+  letter-spacing: 1px;
+}/*# sourceMappingURL=FormLogin.css.map */

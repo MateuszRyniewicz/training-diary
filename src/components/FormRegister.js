@@ -1,9 +1,22 @@
-import React from 'react';
-import { Formik, Form, Field, ErrorMessage } from 'formik';
+import React, { useContext, useEffect, useState } from 'react';
+import { Formik } from 'formik';
 import * as Yup from 'yup';
 import { Link } from 'react-router-dom';
 
+import { AiOutlineMail } from 'react-icons/ai';
+import { RiLockPasswordFill } from 'react-icons/ri';
+import { BsPersonPlus } from 'react-icons/bs';
+import axios from 'axios';
+import { ProductsContext } from '../context/ProductsContext';
+
 const FormRegister = () => {
+	const [isLoading, setIsLoading] = useState(false);
+	const [error, setError] = useState(false);
+
+	const { users, setUsers } = useContext(ProductsContext);
+
+	console.log(users);
+
 	const validationSchema = () =>
 		Yup.object().shape({
 			email: Yup.string()
@@ -19,69 +32,119 @@ const FormRegister = () => {
 				.max(12, 'musi mieć 12 znaków'),
 		});
 
+	console.log(users);
+
 	const initialValues = { email: '', password: '', name: '' };
 
 	const submitForm = (values) => {
 		console.log(values);
 	};
 
-	return (
-		<Formik
-			initialValues={initialValues}
-			validationSchema={validationSchema}
-			onSubmit={submitForm}>
-			{(formik) => {
-				const {
-					values,
-					errors,
-					touched,
-					handleChange,
-					handleSubmit,
-					handleBlur,
-				} = formik;
-				return (
-					<form onSubmit={handleSubmit} noValidate>
-						<div className='form-box-error-message'>
-							<label>Email</label>
-							{errors.email && touched.email && <p>{errors.email}</p>}
-						</div>
-						<input
-							type='text'
-							name='email'
-							value={values.email}
-							onBlur={handleBlur}
-							onChange={handleChange}
-						/>
-						<div className='form-box-error-message'>
-							<label>Password</label>
-							{errors.password && touched.password && <p>{errors.password}</p>}
-						</div>
-						<input
-							type='text'
-							name='password'
-							value={values.password}
-							onBlur={handleBlur}
-							onChange={handleChange}
-						/>
-						<div className='form-box-error-message'>
-							<label>Imię</label>
-							{errors.name && touched.name && <p>{errors.name}</p>}
-						</div>
-						<input
-							type='text'
-							name='name'
-							value={values.name}
-							onBlur={handleBlur}
-							onChange={handleChange}
-						/>
+	useEffect(() => {
+		const getApi = async () => {
+			try {
+				setIsLoading(true);
+				const response = await axios.get('http://localhost:3100/users');
+				setUsers(response.data);
+				setIsLoading(false);
+			} catch (error) {
+				setError(error);
+			}
+		};
 
-						<button>wyślij</button>
-						<p>masz już konto?</p>
-						<Link to='/login'>zaloguj się</Link>
-					</form>
-				);
-			}}
-		</Formik>
+		getApi();
+	}, []);
+
+	return (
+		<main>
+			<Formik
+				initialValues={initialValues}
+				validationSchema={validationSchema}
+				onSubmit={submitForm}>
+				{(formik) => {
+					const {
+						values,
+						errors,
+						touched,
+						handleChange,
+						handleSubmit,
+						handleBlur,
+					} = formik;
+					return (
+						<form className='form' onSubmit={handleSubmit} noValidate>
+							<div className='box-background' />
+							<h3 className='form-header-text'>register</h3>
+							<div className='form-box-error-message'>
+								{errors.email && touched.email && (
+									<p className='form-error-message'>{errors.email}</p>
+								)}
+							</div>
+							<div className='form-box-input'>
+								<div className='form-box-input-icon'>
+									<AiOutlineMail className='form-input-icon' />
+								</div>
+								<input
+									className='input'
+									type='text'
+									name='email'
+									placeholder='your email'
+									value={values.email}
+									onBlur={handleBlur}
+									onChange={handleChange}
+								/>
+							</div>
+							<div className='form-box-error-message'>
+								{errors.password && touched.password && (
+									<p className='form-error-message'>{errors.password}</p>
+								)}
+							</div>
+							<div className='form-box-input'>
+								<div className='form-box-input-icon'>
+									<RiLockPasswordFill className='form-input-icon' />
+								</div>
+								<input
+									className='input'
+									type='text'
+									name='password'
+									placeholder='your password'
+									value={values.password}
+									onBlur={handleBlur}
+									onChange={handleChange}
+								/>
+							</div>
+							<div className='form-box-error-message'>
+								{errors.name && touched.name && (
+									<p className='form-error-message'>{errors.name}</p>
+								)}
+							</div>
+							<div className='form-box-input'>
+								<div className='form-box-input-icon'>
+									<BsPersonPlus className='form-input-icon' />
+								</div>
+								<input
+									className='input'
+									type='text'
+									name='name'
+									placeholder='your name'
+									value={values.name}
+									onBlur={handleBlur}
+									onChange={handleChange}
+								/>
+							</div>
+							<div className='form-box-buttons'>
+								<button type='submit' className='form-button'>
+									send
+								</button>
+								<p className='form-text'>Do you have an account?</p>
+								<Link className='form-button-login' to='/login'>
+									sign up
+								</Link>
+							</div>
+						</form>
+					);
+				}}
+			</Formik>
+		</main>
 	);
 };
 

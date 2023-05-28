@@ -1,17 +1,16 @@
 import React from 'react';
 
 import Header from './components/Header';
-import Footer from './components/Footer';
-import Register from './Pages/Register';
-import Login from './Pages/Login';
-import Home from './Pages/Home';
 
-import {
-	createBrowserRouter,
-	RouterProvider,
-	Route,
-	Outlet,
-} from 'react-router-dom';
+import Footer from './components/Footer';
+import Register from './Pages/RegisterPage';
+import Login from './Pages/LoginPage';
+import Home from './Pages/HomePage';
+
+import './Global.scss';
+
+import { createBrowserRouter, RouterProvider, Outlet } from 'react-router-dom';
+import Dashboard from './components/Dashboard';
 
 const Layout = () => {
 	return (
@@ -32,15 +31,19 @@ const router = createBrowserRouter([
 				path: '/',
 				element: <Home />,
 			},
+			{
+				path: '/register',
+				element: <Register />,
+			},
+			{
+				path: '/login',
+				element: <Login />,
+			},
+			{
+				path: '/dashboard',
+				element: <Dashboard />,
+			},
 		],
-	},
-	{
-		path: '/register',
-		element: <Register />,
-	},
-	{
-		path: '/login',
-		element: <Login />,
 	},
 ]);
 
