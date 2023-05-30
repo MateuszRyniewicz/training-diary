@@ -1,11 +1,13 @@
 import React, { useContext, useEffect, useState } from 'react';
+
 import { Formik } from 'formik';
 import * as Yup from 'yup';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 
 import { AiOutlineMail } from 'react-icons/ai';
 import { RiLockPasswordFill } from 'react-icons/ri';
 import { BsPersonPlus } from 'react-icons/bs';
+
 import axios from 'axios';
 import { ProductsContext } from '../context/ProductsContext';
 
@@ -14,6 +16,8 @@ const FormRegister = () => {
 	const [error, setError] = useState(false);
 
 	const { users, setUsers } = useContext(ProductsContext);
+
+	const navigate = useNavigate();
 
 	console.log(users);
 
@@ -32,12 +36,28 @@ const FormRegister = () => {
 				.max(12, 'musi mieć 12 znaków'),
 		});
 
-	console.log(users);
-
 	const initialValues = { email: '', password: '', name: '' };
 
 	const submitForm = (values) => {
 		console.log(values);
+		console.log(values.name);
+		const duplicateUser = users.find((user) => user.name === values.name);
+		if (duplicateUser) {
+			console.log('e-mail is aleady in our database');
+			return;
+		} else {
+			try {
+				const response = axios.post('http://localhost:3100/users', {
+					email: values.email,
+					password: values.password,
+					name: values.name,
+				});
+				setUsers(response.data);
+				navigate('/dashboard');
+			} catch (error) {
+				setError(error);
+			}
+		}
 	};
 
 	useEffect(() => {
@@ -57,93 +77,105 @@ const FormRegister = () => {
 
 	return (
 		<main>
-			<Formik
-				initialValues={initialValues}
-				validationSchema={validationSchema}
-				onSubmit={submitForm}>
-				{(formik) => {
-					const {
-						values,
-						errors,
-						touched,
-						handleChange,
-						handleSubmit,
-						handleBlur,
-					} = formik;
-					return (
-						<form className='form' onSubmit={handleSubmit} noValidate>
-							<div className='box-background' />
-							<h3 className='form-header-text'>register</h3>
-							<div className='form-box-error-message'>
-								{errors.email && touched.email && (
-									<p className='form-error-message'>{errors.email}</p>
-								)}
-							</div>
-							<div className='form-box-input'>
-								<div className='form-box-input-icon'>
-									<AiOutlineMail className='form-input-icon' />
-								</div>
-								<input
-									className='input'
-									type='text'
-									name='email'
-									placeholder='your email'
-									value={values.email}
-									onBlur={handleBlur}
-									onChange={handleChange}
-								/>
-							</div>
-							<div className='form-box-error-message'>
-								{errors.password && touched.password && (
-									<p className='form-error-message'>{errors.password}</p>
-								)}
-							</div>
-							<div className='form-box-input'>
-								<div className='form-box-input-icon'>
-									<RiLockPasswordFill className='form-input-icon' />
-								</div>
-								<input
-									className='input'
-									type='text'
-									name='password'
-									placeholder='your password'
-									value={values.password}
-									onBlur={handleBlur}
-									onChange={handleChange}
-								/>
-							</div>
-							<div className='form-box-error-message'>
-								{errors.name && touched.name && (
-									<p className='form-error-message'>{errors.name}</p>
-								)}
-							</div>
-							<div className='form-box-input'>
-								<div className='form-box-input-icon'>
-									<BsPersonPlus className='form-input-icon' />
-								</div>
-								<input
-									className='input'
-									type='text'
-									name='name'
-									placeholder='your name'
-									value={values.name}
-									onBlur={handleBlur}
-									onChange={handleChange}
-								/>
-							</div>
-							<div className='form-box-buttons'>
-								<button type='submit' className='form-button'>
-									send
-								</button>
-								<p className='form-text'>Do you have an account?</p>
-								<Link className='form-button-login' to='/login'>
-									sign up
-								</Link>
-							</div>
-						</form>
-					);
-				}}
-			</Formik>
+			{isLoading ? (
+				<div className='container-loader'>
+					<div className='loader' />
+				</div>
+			) : (
+				<>
+					{error ? (
+						<h2>error:{error.response.status}</h2>
+					) : (
+						<Formik
+							initialValues={initialValues}
+							validationSchema={validationSchema}
+							onSubmit={submitForm}>
+							{(formik) => {
+								const {
+									values,
+									errors,
+									touched,
+									handleChange,
+									handleSubmit,
+									handleBlur,
+								} = formik;
+								return (
+									<form className='form' onSubmit={handleSubmit} noValidate>
+										<div className='box-background' />
+										<h3 className='form-header-text'>register</h3>
+										<div className='form-box-error-message'>
+											{errors.email && touched.email && (
+												<p className='form-error-message'>{errors.email}</p>
+											)}
+										</div>
+										<div className='form-box-input'>
+											<div className='form-box-input-icon'>
+												<AiOutlineMail className='form-input-icon' />
+											</div>
+											<input
+												className='input'
+												type='text'
+												name='email'
+												placeholder='your email'
+												value={values.email}
+												onBlur={handleBlur}
+												onChange={handleChange}
+											/>
+										</div>
+										<div className='form-box-error-message'>
+											{errors.password && touched.password && (
+												<p className='form-error-message'>{errors.password}</p>
+											)}
+										</div>
+										<div className='form-box-input'>
+											<div className='form-box-input-icon'>
+												<RiLockPasswordFill className='form-input-icon' />
+											</div>
+											<input
+												className='input'
+												type='text'
+												name='password'
+												placeholder='your password'
+												value={values.password}
+												onBlur={handleBlur}
+												onChange={handleChange}
+											/>
+										</div>
+										<div className='form-box-error-message'>
+											{errors.name && touched.name && (
+												<p className='form-error-message'>{errors.name}</p>
+											)}
+										</div>
+										<div className='form-box-input'>
+											<div className='form-box-input-icon'>
+												<BsPersonPlus className='form-input-icon' />
+											</div>
+											<input
+												className='input'
+												type='text'
+												name='name'
+												placeholder='your name'
+												value={values.name}
+												onBlur={handleBlur}
+												onChange={handleChange}
+											/>
+										</div>
+										<div className='form-box-buttons'>
+											<button type='submit' className='form-button'>
+												send
+											</button>
+											<p className='form-text'>Do you have an account?</p>
+											<Link className='form-button-login' to='/login'>
+												sign up
+											</Link>
+										</div>
+									</form>
+								);
+							}}
+						</Formik>
+					)}
+				</>
+			)}
 		</main>
 	);
 };

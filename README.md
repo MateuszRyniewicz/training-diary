@@ -7,3 +7,5 @@ TD5: add style to all app.
 TD6: add json-server.
 TD7: add api and block try catch.
 TD8: add checkFogin function.
+TD9: add deplicateUser function.
+TD10: add loader.

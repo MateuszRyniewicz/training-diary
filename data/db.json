@@ -1,16 +1,22 @@
 {
-	"users": [
-		{
-			"id": "1",
-			"name": "Mati",
-			"email": "mateusz@gmail.com",
-			"password": "mateusz123"
-		},
-		{
-			"id": "2",
-			"name": "Hubi",
-			"email": "hubi@gmail.com",
-			"password": "hubi123456"
-		}
-	]
+  "users": [
+    {
+      "id": "1",
+      "name": "Mati",
+      "email": "mateusz@gmail.com",
+      "password": "mateusz123"
+    },
+    {
+      "id": "2",
+      "name": "Hubi",
+      "email": "hubi@gmail.com",
+      "password": "hubi123456"
+    },
+    {
+      "email": "ryniuss@o2.pl",
+      "password": "asdasdadasdasdadasda",
+      "name": "okok",
+      "id": "EOl65Cw"
+    }
+  ]
 }
