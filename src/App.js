@@ -11,6 +11,7 @@ import './Global.scss';
 
 import { createBrowserRouter, RouterProvider, Outlet } from 'react-router-dom';
 import Dashboard from './components/Dashboard';
+import NewTrainigPage from './Pages/NewTrainigPage';
 
 const Layout = () => {
 	return (
@@ -42,6 +43,11 @@ const router = createBrowserRouter([
 			{
 				path: '/dashboard',
 				element: <Dashboard />,
+			},
+
+			{
+				path: '/trainigs/new',
+				element: <NewTrainigPage />,
 			},
 		],
 	},

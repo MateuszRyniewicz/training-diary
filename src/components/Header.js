@@ -6,15 +6,15 @@ import { useNavigate } from 'react-router-dom';
 import './Header.scss';
 
 const Header = () => {
-	const { currentUser } = useContext(AuthContext);
+	const { currentUser, logout } = useContext(AuthContext);
 
 	const navigate = useNavigate();
 
-	useEffect(() => {
-		if (!currentUser) {
-			navigate('/');
-		}
-	}, [currentUser]);
+	// useEffect(() => {
+	// 	if (!currentUser) {
+	// 		navigate('/');
+	// 	}
+	// }, [currentUser]);
 
 	return (
 		<header className='header'>
@@ -34,6 +34,7 @@ const Header = () => {
 				</ul>
 			</nav>
 			{currentUser && <p>{currentUser.name}</p>}
+			{currentUser && <button onClick={logout}>logout</button>}
 		</header>
 	);
 };

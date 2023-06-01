@@ -5,11 +5,14 @@ export const AuthContext = createContext();
 
 export const AuthContextProvider = ({ children }) => {
 	const [currentUser, setCurrentUser] = useState(null);
+	const [usersList, setUsersList] = useState(users);
 
 	// const navigate = useNavigate();
 
 	const login = (formLoginValues) => {
-		const user = users.find((user) => user.email === formLoginValues.email);
+		console.log('userList login', usersList);
+
+		const user = usersList.find((user) => user.email === formLoginValues.email);
 		if (!user) {
 			return { success: false, message: 'nie znaleziono email' };
 		}
@@ -22,13 +25,34 @@ export const AuthContextProvider = ({ children }) => {
 		}
 	};
 
+	const register = (formRegisterValues) => {
+		const user = usersList.find(
+			(user) => user.email === formRegisterValues.email
+		);
+		if (user) {
+			return { success: false, message: 'użytkownik juz istnieje z tym emial' };
+		} else {
+			setUsersList([...usersList, user]);
+
+			return { success: true, message: 'dodano nowego użytkownika' };
+		}
+	};
+
 	const logout = () => {
 		setCurrentUser(null);
 		// navigate('/');
 	};
 
 	return (
-		<AuthContext.Provider value={{ login, logout, currentUser }}>
+		<AuthContext.Provider
+			value={{
+				login,
+				logout,
+				currentUser,
+				setCurrentUser,
+				register,
+				setUsersList,
+			}}>
 			{children}
 		</AuthContext.Provider>
 	);

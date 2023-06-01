@@ -4,22 +4,22 @@ import { Formik } from 'formik';
 import * as Yup from 'yup';
 import { Link, useNavigate } from 'react-router-dom';
 
+import { AuthContext } from '../context/AuthContext';
+
 import { AiOutlineMail } from 'react-icons/ai';
 import { RiLockPasswordFill } from 'react-icons/ri';
 import { BsPersonPlus } from 'react-icons/bs';
 
 import axios from 'axios';
-import { ProductsContext } from '../context/ProductsContext';
 
 const FormRegister = () => {
 	const [isLoading, setIsLoading] = useState(false);
 	const [error, setError] = useState(false);
 
-	const { users, setUsers } = useContext(ProductsContext);
-
 	const navigate = useNavigate();
 
-	console.log(users);
+	const { register, setUsersList, login, setCurrentUser } =
+		useContext(AuthContext);
 
 	const validationSchema = () =>
 		Yup.object().shape({
@@ -39,41 +39,12 @@ const FormRegister = () => {
 	const initialValues = { email: '', password: '', name: '' };
 
 	const submitForm = (values) => {
-		console.log(values);
-		console.log(values.name);
-		const duplicateUser = users.find((user) => user.name === values.name);
-		if (duplicateUser) {
-			console.log('e-mail is aleady in our database');
-			return;
-		} else {
-			try {
-				const response = axios.post('http://localhost:3100/users', {
-					email: values.email,
-					password: values.password,
-					name: values.name,
-				});
-				setUsers(response.data);
-				navigate('/dashboard');
-			} catch (error) {
-				setError(error);
-			}
+		const response = register(values);
+		if (response.success) {
+			setCurrentUser(values);
+			navigate('/dashboard');
 		}
 	};
-
-	useEffect(() => {
-		const getApi = async () => {
-			try {
-				setIsLoading(true);
-				const response = await axios.get('http://localhost:3100/users');
-				setUsers(response.data);
-				setIsLoading(false);
-			} catch (error) {
-				setError(error);
-			}
-		};
-
-		getApi();
-	}, []);
 
 	return (
 		<main>
