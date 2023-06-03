@@ -1,12 +1,9 @@
-import React, { Children } from 'react';
-import { useState } from 'react';
+import React, { useState } from 'react';
+
+import './NewTrainigPage.scss';
 
 const NewTrainigPage = () => {
 	const [inputFields, setInputFields] = useState([]);
-
-	const addInputFields = () => {
-		setInputFields([...inputFields, []]);
-	};
 
 	const changeInputValue = (e, i) => {
 		const inputData = [...inputFields];
@@ -24,17 +21,32 @@ const NewTrainigPage = () => {
 	console.log(inputFields);
 
 	return (
-		<>
-			<button onClick={() => setInputFields([...inputFields, []])}>Add</button>
-			{inputFields.map((newInput, i) => {
-				return (
-					<div>
-						<input value={newInput} onChange={(e) => changeInputValue(e, i)} />
-						<button onClick={() => deleteInput(i)}>X</button>
-					</div>
-				);
-			})}
-		</>
+		<main>
+			<form onSubmit={(e) => e.preventDefault()} className='new-training-form'>
+				<button
+					className='new-training-button'
+					onClick={() => setInputFields([...inputFields, []])}>
+					Add
+				</button>
+				{inputFields.map((newInput, i) => {
+					return (
+						<div className='new-training-box-input'>
+							<input
+								className='input'
+								value={newInput}
+								onChange={(e) => changeInputValue(e, i)}
+							/>
+							<button
+								type='button'
+								className='new-training-button-close'
+								onClick={() => deleteInput(i)}>
+								X
+							</button>
+						</div>
+					);
+				})}
+			</form>
+		</main>
 	);
 };
 

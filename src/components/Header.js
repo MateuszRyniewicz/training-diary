@@ -33,8 +33,14 @@ const Header = () => {
 					</li>
 				</ul>
 			</nav>
-			{currentUser && <p>{currentUser.name}</p>}
-			{currentUser && <button onClick={logout}>logout</button>}
+			<div className='current-user-box'>
+				{currentUser && <p className='current-user-name'>{currentUser.name}</p>}
+				{currentUser && (
+					<button className='current-user-button' onClick={logout}>
+						logout
+					</button>
+				)}
+			</div>
 		</header>
 	);
 };

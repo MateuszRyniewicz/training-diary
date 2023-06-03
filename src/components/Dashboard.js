@@ -2,13 +2,17 @@ import React from 'react';
 
 import { Link } from 'react-router-dom';
 
+import './Dashboard.scss';
+
 const Dashboard = () => {
 	return (
 		<main>
-			<Link to={'/trainigs/new'}>
-				<button>dodaj trening</button>
-			</Link>
-			<button>zobacz listę treningów</button>
+			<div className='dashboard-box-buttons'>
+				<Link to={'/trainigs/new'}>
+					<button className='dashboard-button'>dodaj trening</button>
+				</Link>
+				<button className='dashboard-button'>zobacz listę treningów</button>
+			</div>
 		</main>
 	);
 };

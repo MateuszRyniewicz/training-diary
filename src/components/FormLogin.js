@@ -1,4 +1,4 @@
-import React, { useContext, useState, useEffect } from 'react';
+import React, { useContext, useState } from 'react';
 
 import { Link, useNavigate } from 'react-router-dom';
 import { AuthContext } from '../context/AuthContext';
@@ -6,7 +6,6 @@ import { AuthContext } from '../context/AuthContext';
 import { Formik } from 'formik';
 import * as Yup from 'yup';
 
-import axios from 'axios';
 
 import { AiOutlineUser } from 'react-icons/ai';
 import { RiLockPasswordFill } from 'react-icons/ri';
@@ -14,8 +13,8 @@ import { RiLockPasswordFill } from 'react-icons/ri';
 import './Loader.scss';
 import './FormLogin.scss';
 
+
 const FormLogin = () => {
-	const [isLoading, setIsLoading] = useState(false);
 	const [errorMsg, setErrorMsg] = useState('');
 
 	const { login } = useContext(AuthContext);
