@@ -9,6 +9,43 @@
       -ms-flex-align: center;
           align-items: center;
 }
+.header .current-user-box {
+  font-size: 18px;
+  padding: 10px;
+  position: absolute;
+  top: 0;
+  right: 0;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  gap: 10px;
+}
+.header .current-user-box .current-user-name {
+  font-size: 12px;
+  font-weight: 400;
+}
+.header .current-user-box .current-user-button {
+  border: none;
+  border-radius: 4px;
+  padding: 5px 10px;
+  font-size: 12px;
+  font-weight: 500;
+  text-transform: uppercase;
+  background-color: #b799ff;
+  color: #fff;
+  cursor: pointer;
+  -webkit-transition: opacity 0.3s;
+  transition: opacity 0.3s;
+}
+.header .current-user-box .current-user-button:hover {
+  opacity: 0.7;
+}
 .header .nav {
   padding: 10px;
   text-transform: uppercase;
