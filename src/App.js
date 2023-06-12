@@ -3,15 +3,18 @@ import React from 'react';
 import Header from './components/Header';
 
 import Footer from './components/Footer';
-import Register from './Pages/RegisterPage';
-import Login from './Pages/LoginPage';
-import Home from './Pages/HomePage';
+import RegisterPage from './Pages/RegisterPage';
+import LoginPage from './Pages/LoginPage';
+import HomePage from './Pages/HomePage';
 
 import './Global.scss';
 
 import { createBrowserRouter, RouterProvider, Outlet } from 'react-router-dom';
+
 import Dashboard from './components/Dashboard';
 import NewTrainigPage from './Pages/NewTrainigPage';
+import TrainigsListPage from './Pages/TrainigsListPage';
+import TrainigPage from './Pages/TrainigPage';
 
 const Layout = () => {
 	return (
@@ -30,15 +33,15 @@ const router = createBrowserRouter([
 		children: [
 			{
 				path: '/',
-				element: <Home />,
+				element: <HomePage />,
 			},
 			{
 				path: '/register',
-				element: <Register />,
+				element: <RegisterPage />,
 			},
 			{
 				path: '/login',
-				element: <Login />,
+				element: <LoginPage />,
 			},
 			{
 				path: '/dashboard',
@@ -48,6 +51,15 @@ const router = createBrowserRouter([
 			{
 				path: '/trainigs/new',
 				element: <NewTrainigPage />,
+			},
+
+			{
+				path: '/trainigs',
+				element: <TrainigsListPage />,
+			},
+			{
+				path: '/trainigs/:id',
+				element: <TrainigPage />,
 			},
 		],
 	},

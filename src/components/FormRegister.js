@@ -10,7 +10,6 @@ import { AiOutlineMail } from 'react-icons/ai';
 import { RiLockPasswordFill } from 'react-icons/ri';
 import { BsPersonPlus } from 'react-icons/bs';
 
-import axios from 'axios';
 
 const FormRegister = () => {
 	const [isLoading, setIsLoading] = useState(false);
@@ -137,7 +136,7 @@ const FormRegister = () => {
 											</button>
 											<p className='form-text'>Do you have an account?</p>
 											<Link className='form-button-login' to='/login'>
-												sign up
+												sign in
 											</Link>
 										</div>
 									</form>

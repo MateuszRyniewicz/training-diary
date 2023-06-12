@@ -2,6 +2,9 @@ import React, { useContext, useState } from 'react';
 
 import './NewTrainigPage.scss';
 import { TrainigContext } from '../context/TrainigContext';
+import PopupMessage from '../components/PopupMessage';
+
+import { PopupContext } from '../context/PopupContext';
 
 const NewTrainigPage = () => {
 	const [title, setTitle] = useState('');
@@ -15,7 +18,9 @@ const NewTrainigPage = () => {
 		},
 	]);
 
-	const { addTrainig } = useContext(TrainigContext);
+	const { addTrainig, trainigsList } = useContext(TrainigContext);
+	const { message, setMessage, setIsOpenPopup, isOpenPopup } =
+		useContext(PopupContext);
 
 	const addFieldHandle = () => {
 		setInputFields([...inputFields, { exName: '', reps: '', weights: '' }]);
@@ -36,7 +41,8 @@ const NewTrainigPage = () => {
 			exercises: inputFields,
 		});
 
-		console.log(resp);
+		setMessage('Dodano nowy trening');
+		setIsOpenPopup(true);
 	};
 	// const deleteInput = (i) => {
 	// 	const deleteInput = [...inputFields];
@@ -45,43 +51,48 @@ const NewTrainigPage = () => {
 	// };
 
 	return (
-		<main>
-			<form onSubmit={submitForm} className='new-training-form'>
-				<h3>Title </h3>
-				<button className='new-training-button' onClick={addFieldHandle}>
-					Add
-				</button>
-				<input type='text' onChange={(e) => setTitle(e.target.value)} />
-				<input type='date' onChange={(e) => setTrainigDate(e.target.value)} />
+		<>
+			{isOpenPopup && <PopupMessage />}
+			{trainigsList.map((trainig) => (
+				<p>{trainig.title}</p>
+			))}
+			<main>
+				<form onSubmit={submitForm} className='new-training-form'>
+					<h3>Title </h3>
+					<button className='new-training-button' onClick={addFieldHandle}>
+						Add
+					</button>
+					<input type='text' onChange={(e) => setTitle(e.target.value)} />
+					<input type='date' onChange={(e) => setTrainigDate(e.target.value)} />
 
-				{inputFields.map((inputField, i) => (
-					<div key={i}>
-						<input
-							type='text'
-							name='exName'
-							placeholder='exName'
-							value={inputField.exName}
-							onChange={(e) => changeInputHandle(i, e)}
-						/>
-						<input
-							type='text'
-							name='reps'
-							placeholder='reps'
-							value={inputField.reps}
-							onChange={(e) => changeInputHandle(i, e)}
-						/>
-						<input
-							type='text'
-							name='weights'
-							placeholder='weights'
-							value={inputField.weights}
-							onChange={(e) => changeInputHandle(i, e)}
-						/>
-					</div>
-				))}
-				<button type={'submit'}>zapisz trening</button>
+					{inputFields.map((inputField, i) => (
+						<div key={i}>
+							<input
+								type='text'
+								name='exName'
+								placeholder='exName'
+								value={inputField.exName}
+								onChange={(e) => changeInputHandle(i, e)}
+							/>
+							<input
+								type='text'
+								name='reps'
+								placeholder='reps'
+								value={inputField.reps}
+								onChange={(e) => changeInputHandle(i, e)}
+							/>
+							<input
+								type='text'
+								name='weights'
+								placeholder='weights'
+								value={inputField.weights}
+								onChange={(e) => changeInputHandle(i, e)}
+							/>
+						</div>
+					))}
+					<button type={'submit'}>zapisz trening</button>
 
-				{/* {inputFields.map((newInput, i) => {
+					{/* {inputFields.map((newInput, i) => {
 					return (
 						<div className='new-training-box-input' key={i}>
 							<input
@@ -98,8 +109,9 @@ const NewTrainigPage = () => {
 						</div>
 					);
 				})} */}
-			</form>
-		</main>
+				</form>
+			</main>
+		</>
 	);
 };
 
