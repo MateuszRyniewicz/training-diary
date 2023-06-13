@@ -1,12 +1,15 @@
 import React, { useContext } from 'react';
 import { PopupContext } from '../context/PopupContext';
+
+import './PopupMessage.scss';
+
 const PopupMessage = () => {
 	const { message, setIsOpenPopup } = useContext(PopupContext);
 
 	return (
-		<div>
+		<div className='popup-message'>
 			<h3>{message}</h3>
-			<button onClick={() => setIsOpenPopup(false)}>OK</button>
+			<button className='popup-message-button' onClick={() => setIsOpenPopup(false)}>OK</button>
 		</div>
 	);
 };

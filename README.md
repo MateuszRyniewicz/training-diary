@@ -14,4 +14,5 @@ TD12: add add information about register.
 TD13: add add style to all app.
 TD14: change multi-inputs and add trainig context.
 TD15: add confirm dialog and add popupContext.
+TD16: add style to popupMessage component.
 
