@@ -6,7 +6,7 @@ const TrainigPage = () => {
 	const { id } = useParams();
 
 	const { trainigsList } = useContext(TrainigContext);
-	console.log(trainigsList);
+
 	const singleTrainig = trainigsList.find((trainig) => trainig.id === id);
 
 	return (

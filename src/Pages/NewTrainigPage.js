@@ -1,5 +1,7 @@
 import React, { useContext, useState } from 'react';
 
+import { v4 as uuid } from 'uuid';
+
 import { TrainigContext } from '../context/TrainigContext';
 import PopupMessage from '../components/PopupMessage';
 
@@ -37,26 +39,19 @@ const NewTrainigPage = () => {
 		e.preventDefault();
 
 		const resp = addTrainig({
+			id: uuid(),
 			title: title,
 			trainigDate: trainigDate,
-			exercises: inputFields,
+			excercises: inputFields,
 		});
 
 		setMessage('Dodano nowy trening');
 		setIsOpenPopup(true);
 	};
-	// const deleteInput = (i) => {
-	// 	const deleteInput = [...inputFields];
-	// 	deleteInput.splice(i, 1);
-	// 	setInputFields(deleteInput);
-	// };
 
 	return (
 		<>
 			{isOpenPopup && <PopupMessage />}
-			{/* {trainigsList.map((trainig) => (
-				<p>{trainig.title}</p>
-			))} */}
 			<main>
 				<form onSubmit={submitForm} className='new-training-form'>
 					<div className='new-trainig-form-box-left'>
@@ -64,7 +59,8 @@ const NewTrainigPage = () => {
 							<input
 								className='input'
 								type='text'
-								placeholder='title'
+								name='title'
+								placeholder='TITLE'
 								onChange={(e) => setTitle(e.target.value)}
 							/>
 							<input
@@ -110,7 +106,10 @@ const NewTrainigPage = () => {
 						</div>
 					</div>
 					<div className='new-trainig-form-box-right'>
-						<button className='new-training-button' onClick={addFieldHandle}>
+						<button
+							type='button'
+							className='new-training-button'
+							onClick={addFieldHandle}>
 							+
 						</button>
 					</div>

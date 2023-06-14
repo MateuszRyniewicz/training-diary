@@ -11,7 +11,9 @@ const Dashboard = () => {
 				<Link to={'/trainigs/new'}>
 					<button className='dashboard-button'>dodaj trening</button>
 				</Link>
-				<button className='dashboard-button'>zobacz listę treningów</button>
+				<Link to={'/trainigs'}>
+					<button className='dashboard-button'>zobacz listę treningów</button>
+				</Link>
 			</div>
 		</main>
 	);

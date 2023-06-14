@@ -15,6 +15,7 @@ import Dashboard from './components/Dashboard';
 import NewTrainigPage from './Pages/NewTrainigPage';
 import TrainigsListPage from './Pages/TrainigsListPage';
 import TrainigPage from './Pages/TrainigPage';
+import EditTrainigPage from './Pages/EditTrainigPage';
 
 const Layout = () => {
 	return (
@@ -60,6 +61,10 @@ const router = createBrowserRouter([
 			{
 				path: '/trainigs/:id',
 				element: <TrainigPage />,
+			},
+			{
+				path: 'trainigs/:id/edit',
+				element: <EditTrainigPage />,
 			},
 		],
 	},

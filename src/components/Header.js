@@ -25,11 +25,12 @@ const Header = () => {
 							Home
 						</Link>
 					</li>
+
 					<li className='menu-link'>
-						<Link to='/login'>Login</Link>
+						<Link to='/trainigs'>Trainigs</Link>
 					</li>
 					<li className='menu-link'>
-						<Link to='/register'>Register</Link>
+						<Link to='/trainigs/new'>add new trainig</Link>
 					</li>
 				</ul>
 			</nav>

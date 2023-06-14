@@ -6,13 +6,11 @@ import { AuthContext } from '../context/AuthContext';
 import { Formik } from 'formik';
 import * as Yup from 'yup';
 
-
 import { AiOutlineUser } from 'react-icons/ai';
 import { RiLockPasswordFill } from 'react-icons/ri';
 
 import './Loader.scss';
 import './FormLogin.scss';
-
 
 const FormLogin = () => {
 	const [errorMsg, setErrorMsg] = useState('');
@@ -110,7 +108,7 @@ const FormLogin = () => {
 										register now
 									</Link>
 								</div>
-								{errorMsg && <p>{errorMsg}</p>}
+								{errorMsg && <p style={{ color: 'red' }}>{errorMsg}</p>}
 							</form>
 						);
 					}}

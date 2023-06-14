@@ -43,7 +43,10 @@ const TrainigsListPage = () => {
 										<button onClick={() => navigate(`/trainigs/${trainig.id}`)}>
 											show
 										</button>
-										<button>edit</button>
+										<button
+											onClick={() => navigate(`/trainigs/${trainig.id}/edit`)}>
+											edit
+										</button>
 										<button onClick={() => deleteTrainig(trainig.id)}>
 											delete
 										</button>
