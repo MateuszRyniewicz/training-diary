@@ -1,0 +1,48 @@
+.trainigs-list-page-main {
+	justify-content: flex-start;
+
+	.trainigs-list-page-main-text {
+		padding: 70px;
+		font-size: 30px;
+	}
+
+	.trainigs-list-page-contanier {
+		padding: 25px;
+
+		.trainigs-list-page-table {
+			border: 1px solid #000;
+			padding: 25px;
+			.trainigs-list-page-th {
+				border: 1px solid #000;
+				padding: 10px;
+				font-size: 18px;
+			}
+		}
+		.trainigs-list-page-td {
+			border: 1px solid #000;
+			padding: 8px;
+			font-size: 15px;
+			text-align: center;
+		}
+		.box-buttons {
+			display: flex;
+			justify-content: center;
+			align-items: center;
+			gap: 5px;
+
+			.trainigs-list-page-button {
+				padding: 10px;
+				border: none;
+				border-radius: 4px;
+				font-weight: 500;
+				background-color: #b799ff;
+				color: #fff;
+				cursor: pointer;
+				transition: opacity 0.3s;
+				&:hover {
+					opacity: 0.7;
+				}
+			}
+		}
+	}
+}

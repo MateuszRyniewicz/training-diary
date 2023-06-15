@@ -3,6 +3,8 @@ import { useParams } from 'react-router-dom';
 
 import { TrainigContext } from '../context/TrainigContext';
 
+import './EditTrainigPage.scss';
+
 const EditTrainigPage = () => {
 	const { id } = useParams();
 
@@ -29,37 +31,58 @@ const EditTrainigPage = () => {
 	};
 
 	return (
-		<form onSubmit={{ submitForm }}>
-			<div>
-				<p>{trainigToEdit.title}</p>
-				<p>{trainigToEdit.date}</p>
-			</div>
-			<div>
-				<input
-					value={inputTitle}
-					type='text'
-					onChange={(e) => setInputTitle(e.target.value)}
-				/>
-				<input
-					value={inputDate}
-					type='date'
-					onChange={(e) => setInputDate(e.target.value)}
-				/>
-			</div>
-			{excercises.map((excercise, i) => (
-				<div key={i}>
-					<input
-						name='exName'
-						value={excercise.exName}
-						type='text'
-						onChange={(e) => changeInputsHandle(e, i)}
-					/>
-					<input name='reps' value={excercise.reps} type='text' />
-					<input name='weights' value={excercise.weights} type='text' />
+		<main>
+			<form className='edit-trainig-page' onSubmit={{ submitForm }}>
+				<div className='edit-trainig-page-header'>
+					<p>{trainigToEdit.title}:</p>
+					<p>{trainigToEdit.date}</p>
 				</div>
-			))}
-			<button type='submit'>Edit</button>
-		</form>
+				<div className='edit-trainig-page-box-inputs'>
+					<input
+						className='edit-trainig-page-input'
+						value={inputTitle}
+						type='text'
+						onChange={(e) => setInputTitle(e.target.value)}
+					/>
+					<input
+						className='edit-trainig-page-input'
+						value={inputDate}
+						type='date'
+						onChange={(e) => setInputDate(e.target.value)}
+					/>
+				</div>
+				{excercises.map((excercise, i) => (
+					<div className='edit-trainig-page-box-inputs' key={i}>
+						<input
+							className='edit-trainig-page-input'
+							name='exName'
+							value={excercise.exName}
+							type='text'
+							onChange={(e) => changeInputsHandle(e, i)}
+						/>
+						<input
+							className='edit-trainig-page-input'
+							name='reps'
+							value={excercise.reps}
+							type='text'
+							onChange={(e) => changeInputsHandle(e, i)}
+						/>
+						<input
+							className='edit-trainig-page-input'
+							name='weights'
+							value={excercise.weights}
+							type='text'
+							onChange={(e) => changeInputsHandle(e, i)}
+						/>
+					</div>
+				))}
+				<div className='edit-trainig-page-box-button'>
+					<button className='edit-trainig-page-button-submit' type='submit'>
+						Edit
+					</button>
+				</div>
+			</form>
+		</main>
 	);
 };
 

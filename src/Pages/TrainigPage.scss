@@ -1,0 +1,23 @@
+.training-page {
+	border: 1px solid #000;
+	padding: 15px;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	flex-direction: column;
+	gap: 10px;
+
+	.trainig-page-title {
+		font-size: 20px;
+		font-weight: 500;
+	}
+	.trainig-page-date {
+		font-size: 18px;
+		font-weight: 400;
+	}
+
+	.trainig-paga-list-details {
+		font-size: 16px;
+		font-weight: 300;
+	}
+}

@@ -7,6 +7,8 @@ import { ConfirmDialogContext } from '../context/ConfirmDialogContext';
 
 import ConfirmDialog from '../components/ConfirmDialog';
 
+import './TrainigsListPage.scss';
+
 const TrainigsListPage = () => {
 	const { trainigsList, setIdElementToDelete } = useContext(TrainigContext);
 	const { isOpen, setIsOpen } = useContext(ConfirmDialogContext);
@@ -21,33 +23,38 @@ const TrainigsListPage = () => {
 	return (
 		<>
 			{isOpen && <ConfirmDialog />}
-			<div>
-				<h3>Your tranings list</h3>
-				<div className='contanier'>
-					<table>
+			<main className='trainigs-list-page-main'>
+				<h3 className='trainigs-list-page-main-text'>Your tranings list</h3>
+				<div className='trainigs-list-page-contanier'>
+					<table cellSpacing={0} className='trainigs-list-page-table'>
 						<thead>
 							<tr>
-								<th>No.</th>
-								<th>Title</th>
-								<th>Date</th>
-								<th>Actions</th>
+								<th className='trainigs-list-page-th'>No.</th>
+								<th className='trainigs-list-page-th'>Title</th>
+								<th className='trainigs-list-page-th'>Date</th>
+								<th className='trainigs-list-page-th'>Actions</th>
 							</tr>
 						</thead>
 						<tbody>
 							{trainigsList.map((trainig, i) => (
 								<tr key={trainig.id}>
-									<td>{i + 1}</td>
-									<td>{trainig.title}</td>
-									<td>{trainig.date}</td>
-									<td>
-										<button onClick={() => navigate(`/trainigs/${trainig.id}`)}>
+									<td className='trainigs-list-page-td'>{i + 1}</td>
+									<td className='trainigs-list-page-td'>{trainig.title}</td>
+									<td className='trainigs-list-page-td'>{trainig.date}</td>
+									<td className='trainigs-list-page-td box-buttons'>
+										<button
+											className='trainigs-list-page-button'
+											onClick={() => navigate(`/trainigs/${trainig.id}`)}>
 											show
 										</button>
 										<button
+											className='trainigs-list-page-button'
 											onClick={() => navigate(`/trainigs/${trainig.id}/edit`)}>
 											edit
 										</button>
-										<button onClick={() => deleteTrainig(trainig.id)}>
+										<button
+											className='trainigs-list-page-button'
+											onClick={() => deleteTrainig(trainig.id)}>
 											delete
 										</button>
 									</td>
@@ -56,7 +63,7 @@ const TrainigsListPage = () => {
 						</tbody>
 					</table>
 				</div>
-			</div>
+			</main>
 		</>
 	);
 };

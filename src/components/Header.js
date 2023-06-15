@@ -30,7 +30,7 @@ const Header = () => {
 						<Link to='/trainigs'>Trainigs</Link>
 					</li>
 					<li className='menu-link'>
-						<Link to='/trainigs/new'>add new trainig</Link>
+						<Link to='/trainigs/new'>new trainig</Link>
 					</li>
 				</ul>
 			</nav>
