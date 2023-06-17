@@ -1,5 +1,5 @@
 import React, { useContext } from 'react';
-import { useParams } from 'react-router-dom';
+import { useParams, Link } from 'react-router-dom';
 import { TrainigContext } from '../context/TrainigContext';
 
 import './TrainigPage.scss';
@@ -13,6 +13,11 @@ const TrainigPage = () => {
 
 	return (
 		<main>
+			<div className='trainig-page-box-button'>
+				<Link to='/trainigs'>
+					<button className='trainig-page-button'>back</button>
+				</Link>
+			</div>
 			<div className='training-page'>
 				<p className='trainig-page-title'>{singleTrainig.title}</p>
 				<p className='trainig-page-date'>{singleTrainig.date}</p>
