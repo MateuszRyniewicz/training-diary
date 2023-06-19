@@ -1,8 +1,10 @@
 import React, { useContext } from 'react';
+
 import { ConfirmDialogContext } from '../context/ConfirmDialogContext';
 import { TrainigContext } from '../context/TrainigContext';
 
 import './ConfirmDialog.scss';
+
 
 const ConfirmDialog = () => {
 	const { setIsOpen } = useContext(ConfirmDialogContext);

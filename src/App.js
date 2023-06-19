@@ -37,14 +37,6 @@ const router = createBrowserRouter([
 				element: <HomePage />,
 			},
 			{
-				path: '/register',
-				element: <RegisterPage />,
-			},
-			{
-				path: '/login',
-				element: <LoginPage />,
-			},
-			{
 				path: '/dashboard',
 				element: <Dashboard />,
 			},
@@ -67,6 +59,15 @@ const router = createBrowserRouter([
 				element: <EditTrainigPage />,
 			},
 		],
+	},
+
+	{
+		path: '/register',
+		element: <RegisterPage />,
+	},
+	{
+		path: '/login',
+		element: <LoginPage />,
 	},
 ]);
 

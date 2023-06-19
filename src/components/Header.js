@@ -12,7 +12,7 @@ const Header = () => {
 
 	// useEffect(() => {
 	// 	if (!currentUser) {
-	// 		navigate('/');
+	// 		navigate('/login');
 	// 	}
 	// }, [currentUser]);
 
@@ -27,7 +27,7 @@ const Header = () => {
 					</li>
 
 					<li className='menu-link'>
-						<Link to='/trainigs'>Trainigs</Link>
+						<Link to='/trainigs'>Trainings</Link>
 					</li>
 					<li className='menu-link'>
 						<Link to='/trainigs/new'>new trainig</Link>

@@ -4,6 +4,7 @@ import { Link } from 'react-router-dom';
 
 import './Dashboard.scss';
 
+
 const Dashboard = () => {
 	return (
 		<main>

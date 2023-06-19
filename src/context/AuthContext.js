@@ -1,16 +1,14 @@
 import { createContext, useState } from 'react';
 import { users } from '../db/users';
-// import { useNavigate } from 'react-router-dom';
+
 export const AuthContext = createContext();
 
 export const AuthContextProvider = ({ children }) => {
 	const [currentUser, setCurrentUser] = useState(null);
 	const [usersList, setUsersList] = useState(users);
 
-	// const navigate = useNavigate();
-
 	const login = (formLoginValues) => {
-		console.log('userList login', usersList);
+	
 
 		const user = usersList.find((user) => user.email === formLoginValues.email);
 		if (!user) {
@@ -20,7 +18,7 @@ export const AuthContextProvider = ({ children }) => {
 			return { success: false, message: 'niepoprawne hasło' };
 		} else if (user && user.password === formLoginValues.password) {
 			setCurrentUser(user);
-			// navigate('/dashboard');
+		
 			return { success: true, message: 'zalogowano' };
 		}
 	};
@@ -40,7 +38,7 @@ export const AuthContextProvider = ({ children }) => {
 
 	const logout = () => {
 		setCurrentUser(null);
-		// navigate('/');
+		
 	};
 
 	return (

@@ -8,10 +8,9 @@ import './EditTrainigPage.scss';
 const EditTrainigPage = () => {
 	const { id } = useParams();
 
-	const { trainigsList } = useContext(TrainigContext);
+	const { trainigsList, editTrainig } = useContext(TrainigContext);
 
 	const trainigToEdit = trainigsList.find((trainig) => trainig.id === id);
-	console.log(trainigToEdit);
 
 	const [inputTitle, setInputTitle] = useState(trainigToEdit.title);
 	const [inputDate, setInputDate] = useState(
@@ -27,12 +26,22 @@ const EditTrainigPage = () => {
 	};
 
 	const submitForm = (e) => {
-		e.submitDefault();
+		e.preventDefault();
+		console.log('title', inputTitle);
+		console.log('date', inputDate);
+
+		editTrainig({
+			id,
+			title: inputTitle,
+			date: inputDate,
+			excercises,
+		});
 	};
 
 	return (
+		
 		<main>
-			<form className='edit-trainig-page' onSubmit={{ submitForm }}>
+			<form className='edit-trainig-page' onSubmit={submitForm}>
 				<div className='edit-trainig-page-header'>
 					<p>{trainigToEdit.title}:</p>
 					<p>{trainigToEdit.date}</p>

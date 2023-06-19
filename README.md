@@ -18,4 +18,5 @@ TD16: add style to popupMessage component.
 TD17: add change inputs to edit.
 TD18: add style to few pages.
 TD19: add button to trainig page.
+TD20: add edit training function.
 

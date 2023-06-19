@@ -19,6 +19,17 @@ export const TrainigContextProvider = ({ children }) => {
 		setTrainigList(result);
 	};
 
+	const editTrainig = (editedTrainig) => {
+		const result = trainigsList.map((trainig) => {
+			if (trainig.id === editedTrainig.id) {
+				return editedTrainig;
+			} else {
+				return trainig;
+			}
+		});
+
+		setTrainigList(result);
+	};
 	return (
 		<TrainigContext.Provider
 			value={{
@@ -27,6 +38,7 @@ export const TrainigContextProvider = ({ children }) => {
 				deleteTraining,
 				idElementToDelete,
 				setIdElementToDelete,
+				editTrainig,
 			}}>
 			{children}
 		</TrainigContext.Provider>

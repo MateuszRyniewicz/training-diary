@@ -5,6 +5,7 @@ import { TrainigContext } from '../context/TrainigContext';
 import './TrainigPage.scss';
 
 const TrainigPage = () => {
+	
 	const { id } = useParams();
 
 	const { trainigsList } = useContext(TrainigContext);
