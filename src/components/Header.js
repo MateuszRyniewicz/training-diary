@@ -10,11 +10,11 @@ const Header = () => {
 
 	const navigate = useNavigate();
 
-	// useEffect(() => {
-	// 	if (!currentUser) {
-	// 		navigate('/login');
-	// 	}
-	// }, [currentUser]);
+	useEffect(() => {
+		if (!currentUser) {
+			navigate('/login');
+		}
+	}, [currentUser]);
 
 	return (
 		<header className='header'>

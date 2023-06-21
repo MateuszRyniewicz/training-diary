@@ -4,6 +4,7 @@ import FormRegister from '../components/FormRegister';
 
 
 const RegisterPage = () => {
+	
 	return <FormRegister />;
 };
 

@@ -13,6 +13,7 @@ const TrainigPage = () => {
 	const singleTrainig = trainigsList.find((trainig) => trainig.id === id);
 
 	return (
+		
 		<main>
 			<div className='trainig-page-box-button'>
 				<Link to='/trainigs'>

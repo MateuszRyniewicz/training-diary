@@ -3,18 +3,23 @@ import { useParams } from 'react-router-dom';
 
 import { TrainigContext } from '../context/TrainigContext';
 
+import PopupMessage from '../components/PopupMessage';
+import { PopupContext } from '../context/PopupContext';
+
 import './EditTrainigPage.scss';
 
 const EditTrainigPage = () => {
+
 	const { id } = useParams();
 
 	const { trainigsList, editTrainig } = useContext(TrainigContext);
+	const { isOpenPopup, setIsOpenPopup, setMessage } = useContext(PopupContext);
 
 	const trainigToEdit = trainigsList.find((trainig) => trainig.id === id);
 
 	const [inputTitle, setInputTitle] = useState(trainigToEdit.title);
 	const [inputDate, setInputDate] = useState(
-		`${new Date(trainigToEdit.date).toISOString().slice(0, 10)}`
+		`${new Date(trainigToEdit.trainigDate).toISOString().slice(0, 10)}`
 	);
 
 	const [excercises, setExcercises] = useState(trainigToEdit.excercises);
@@ -27,24 +32,26 @@ const EditTrainigPage = () => {
 
 	const submitForm = (e) => {
 		e.preventDefault();
-		console.log('title', inputTitle);
-		console.log('date', inputDate);
 
 		editTrainig({
 			id,
 			title: inputTitle,
-			date: inputDate,
+			trainigDate: inputDate,
 			excercises,
 		});
+
+		setMessage('Training has been edited');
+		setIsOpenPopup(true);
 	};
 
 	return (
 		
 		<main>
+			{isOpenPopup && <PopupMessage />}
 			<form className='edit-trainig-page' onSubmit={submitForm}>
 				<div className='edit-trainig-page-header'>
 					<p>{trainigToEdit.title}:</p>
-					<p>{trainigToEdit.date}</p>
+					<p>{trainigToEdit.trainigDate}</p>
 				</div>
 				<div className='edit-trainig-page-box-inputs'>
 					<input

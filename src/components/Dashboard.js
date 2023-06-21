@@ -6,6 +6,7 @@ import './Dashboard.scss';
 
 
 const Dashboard = () => {
+	
 	return (
 		<main>
 			<div className='dashboard-box-buttons'>
