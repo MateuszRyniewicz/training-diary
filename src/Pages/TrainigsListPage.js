@@ -40,7 +40,9 @@ const TrainigsListPage = () => {
 								<tr key={trainig.id}>
 									<td className='trainigs-list-page-td'>{i + 1}</td>
 									<td className='trainigs-list-page-td'>{trainig.title}</td>
-									<td className='trainigs-list-page-td'>{trainig.date}</td>
+									<td className='trainigs-list-page-td'>
+										{trainig.trainigDate}
+									</td>
 									<td className='trainigs-list-page-td box-buttons'>
 										<button
 											className='trainigs-list-page-button'

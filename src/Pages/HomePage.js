@@ -4,6 +4,7 @@ import './HomePage.scss';
 
 const HomePage = () => {
 	return (
+		
 		<main className='main'>
 			<div className='main-header-box-text'>
 				<h2 className='main-header-text'>Welcome to Training Diary</h2>

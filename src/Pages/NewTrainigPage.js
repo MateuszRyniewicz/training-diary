@@ -21,9 +21,8 @@ const NewTrainigPage = () => {
 		},
 	]);
 
-	const { addTrainig, trainigsList } = useContext(TrainigContext);
-	const { message, setMessage, setIsOpenPopup, isOpenPopup } =
-		useContext(PopupContext);
+	const { addTrainig } = useContext(TrainigContext);
+	const { setMessage, setIsOpenPopup, isOpenPopup } = useContext(PopupContext);
 
 	const addFieldHandle = () => {
 		setInputFields([...inputFields, { exName: '', reps: '', weights: '' }]);
@@ -38,14 +37,14 @@ const NewTrainigPage = () => {
 	const submitForm = (e) => {
 		e.preventDefault();
 
-		const resp = addTrainig({
+		addTrainig({
 			id: uuid(),
 			title: title,
 			trainigDate: trainigDate,
 			excercises: inputFields,
 		});
 
-		setMessage('Dodano nowy trening');
+		setMessage('Added new trainig');
 		setIsOpenPopup(true);
 	};
 
