@@ -1,4 +1,4 @@
-import React, { useContext, useState } from 'react';
+import React, { useContext } from 'react';
 
 import { Formik } from 'formik';
 import * as Yup from 'yup';
@@ -11,7 +11,6 @@ import { RiLockPasswordFill } from 'react-icons/ri';
 import { BsPersonPlus } from 'react-icons/bs';
 
 const FormRegister = () => {
-	const [error, setError] = useState(false);
 
 	const navigate = useNavigate();
 
@@ -44,9 +43,6 @@ const FormRegister = () => {
 
 	return (
 		<main>
-			<div className='container-loader'>
-				<div className='loader' />
-			</div>
 			<Formik
 				initialValues={initialValues}
 				validationSchema={validationSchema}
